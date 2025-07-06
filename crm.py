@@ -50,7 +50,7 @@ def kunde_suchen():
         print(f"  Telefon: {details.get('telefon', 'N/A')}")
         print("-------------------------")
 
-def kunde_aktualisieren(): # NEU
+def kunde_aktualisieren():
     print("\n--- Kunden aktualisieren ---")
     name_zu_aktualisieren = input("Name des zu aktualisierenden Kunden: ")
 
@@ -72,13 +72,23 @@ def kunde_aktualisieren(): # NEU
 
     print(f"Kunde '{name_zu_aktualisieren}' wurde aktualisiert.")
 
+def kunde_loeschen(): # NEU
+    print("\n--- Kunden löschen ---")
+    name_zu_loeschen = input("Name des zu löschenden Kunden: ")
+    if name_zu_loeschen in kunden:
+        del kunden[name_zu_loeschen]
+        print(f"Kunde '{name_zu_loeschen}' wurde aus dem Katalog entfernt.")
+    else:
+        print(f"Fehler: Kunde '{name_zu_loeschen}' nicht im Katalog gefunden.")
+
 def zeige_menue():
     print("\n--- CRM Menü ---")
     print("1. Kunde hinzufügen")
     print("2. Kunden anzeigen")
     print("3. Kunde suchen")
-    print("4. Kunde aktualisieren") # GEÄNDERT
-    print("5. Beenden")           # GEÄNDERT
+    print("4. Kunde aktualisieren")
+    print("5. Kunde löschen") # GEÄNDERT
+    print("6. Beenden")      # GEÄNDERT
     print("----------------")
 
 def main():
@@ -92,9 +102,11 @@ def main():
             kunden_anzeigen()
         elif wahl == '3':
             kunde_suchen()
-        elif wahl == '4': # GEÄNDERT
+        elif wahl == '4':
             kunde_aktualisieren()
         elif wahl == '5': # GEÄNDERT
+            kunde_loeschen()
+        elif wahl == '6': # GEÄNDERT
             print("Programm wird beendet. Auf Wiedersehen!")
             break
         else:
@@ -102,4 +114,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-5
