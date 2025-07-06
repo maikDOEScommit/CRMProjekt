@@ -30,7 +30,7 @@ def kunde_hinzufuegen():
     }
     print(f"Kunde '{name}' wurde hinzugefügt.")
 
-def kunde_suchen(): # NEU
+def kunde_suchen():
     print("\n--- Kunden suchen ---")
     suchbegriff = input("Geben Sie einen Suchbegriff (Name oder E-Mail) ein: ").lower()
     gefundene_kunden = {}
@@ -50,12 +50,35 @@ def kunde_suchen(): # NEU
         print(f"  Telefon: {details.get('telefon', 'N/A')}")
         print("-------------------------")
 
+def kunde_aktualisieren(): # NEU
+    print("\n--- Kunden aktualisieren ---")
+    name_zu_aktualisieren = input("Name des zu aktualisierenden Kunden: ")
+
+    if name_zu_aktualisieren not in kunden:
+        print(f"Fehler: Kunde '{name_zu_aktualisieren}' nicht im Katalog gefunden.")
+        return
+
+    print(f"Aktuelle Daten für {name_zu_aktualisieren}:")
+    print(f"  E-Mail: {kunden[name_zu_aktualisieren]['email']}")
+    print(f"  Telefon: {kunden[name_zu_aktualisieren]['telefon']}")
+
+    neue_email = input("Neue E-Mail (leer lassen für keine Änderung): ")
+    neue_telefon = input("Neue Telefonnummer (leer lassen für keine Änderung): ")
+
+    if neue_email:
+        kunden[name_zu_aktualisieren]['email'] = neue_email
+    if neue_telefon:
+        kunden[name_zu_aktualisieren]['telefon'] = neue_telefon
+
+    print(f"Kunde '{name_zu_aktualisieren}' wurde aktualisiert.")
+
 def zeige_menue():
     print("\n--- CRM Menü ---")
     print("1. Kunde hinzufügen")
     print("2. Kunden anzeigen")
-    print("3. Kunde suchen") # GEÄNDERT
-    print("4. Beenden")    # GEÄNDERT
+    print("3. Kunde suchen")
+    print("4. Kunde aktualisieren") # GEÄNDERT
+    print("5. Beenden")           # GEÄNDERT
     print("----------------")
 
 def main():
@@ -67,9 +90,11 @@ def main():
             kunde_hinzufuegen()
         elif wahl == '2':
             kunden_anzeigen()
-        elif wahl == '3': # GEÄNDERT
+        elif wahl == '3':
             kunde_suchen()
         elif wahl == '4': # GEÄNDERT
+            kunde_aktualisieren()
+        elif wahl == '5': # GEÄNDERT
             print("Programm wird beendet. Auf Wiedersehen!")
             break
         else:
@@ -77,3 +102,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+5
